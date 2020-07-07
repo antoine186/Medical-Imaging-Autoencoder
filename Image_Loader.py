@@ -4,13 +4,14 @@ from sklearn import preprocessing
 import numpy as np
 
 # Returns all of the slides of specified magnitude.
-# Returns all slides of all conditions concatenated together along the 0 axis.
-# Returns a corresponding
+# More precisely: Returns all slides of all conditions concatenated together along the 0 axis.
+# Returns a corresponding array of labels.
+# Returns the label model allowing us to reverse engineer actual class label later on.
 def all_slides_select_mag(mag):
 
     le = preprocessing.LabelEncoder()
 
-    # We are loading all of our slides for mag
+    # We are loading all of our slides for mag.
 
     # Benign slides
     adenosis_slides = all_slides_select_type_andmag("adenosis", mag, (460, 700), True)
@@ -28,7 +29,7 @@ def all_slides_select_mag(mag):
                     ductal_carcinoma_slides, lobular_carcinoma_slides, mucinous_carcinoma_slides,
                     papillary_carcinoma_slides), axis=0)
 
-    # We are labelling all of our slides
+    # We are labelling all of our slides.
 
     adenosis_labels = np.repeat("adenosis", adenosis_slides.shape[0])
     fibroadenoma_labels = np.repeat("fibroadenoma", fibroadenoma_slides.shape[0])
@@ -44,8 +45,11 @@ def all_slides_select_mag(mag):
                     ductal_carcinoma_labels, lobular_carcinoma_labels, mucinous_carcinoma_labels,
                     papillary_carcinoma_labels))
 
+    # Fitting le returns a set of distinct and ordered detected classes.
     le.fit(all_slides_mag_labels)
+    # Using le transform, we map all of our labels into indices that map onto the result of le.fit.
     all_slides_mag_labels = le.transform(all_slides_mag_labels)
+    # Using inverse_transform, we simply undo the transform.
     #le.inverse_transform(all_slides_mag_labels)
 
     return all_slides_mag, all_slides_mag_labels, le
