@@ -6,12 +6,13 @@ from keras.datasets import mnist
 import numpy as np
 from scipy.stats import norm
 import matplotlib.pyplot as plt
+import math
 
 # !!! Plagiarism disclaimer !!!
 # A large portion of the code below was taken from the book GANs in Action by Jakub Langr and Vladimir Bok
 # I have reorganised and modified those for my own purpose
 
-def autoencode_fit(batch_size, original_dim, latent_dim, intermediate_dim, nb_epoch, mnist_bool):
+def autoencode_fit(batch_size, original_dim, latent_dim, intermediate_dim, nb_epoch, mnist_bool, nb_fig):
 
     def sampling(args):
         z_mean, z_log_var = args
@@ -64,8 +65,8 @@ def autoencode_fit(batch_size, original_dim, latent_dim, intermediate_dim, nb_ep
 
     ### This should be in a different file
 
-    n = 15  # figure with 15x15 digits
-    digit_size = 28
+    n = nb_fig  # figure with 15x15 digits
+    digit_size = int(math.sqrt(original_dim))
     figure = np.zeros((digit_size * n, digit_size * n))
 
     grid_x = norm.ppf(np.linspace(0.05, 0.95, n))
