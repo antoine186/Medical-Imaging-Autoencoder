@@ -10,6 +10,8 @@ def all_slides_select_mag(mag):
 
     le = preprocessing.LabelEncoder()
 
+    # We are loading all of our slides for mag
+
     # Benign slides
     adenosis_slides = all_slides_select_type_andmag("adenosis", mag, (460, 700), True)
     fibroadenoma_slides = all_slides_select_type_andmag("fibroadenoma", mag, (460, 700), True)
@@ -25,6 +27,8 @@ def all_slides_select_mag(mag):
     all_slides_mag = np.concatenate((adenosis_slides, fibroadenoma_slides, phyllodes_tumor_slides, tubular_adenoma_slides,
                     ductal_carcinoma_slides, lobular_carcinoma_slides, mucinous_carcinoma_slides,
                     papillary_carcinoma_slides), axis=0)
+
+    # We are labelling all of our slides
 
     adenosis_labels = np.repeat("adenosis", adenosis_slides.shape[0])
     fibroadenoma_labels = np.repeat("fibroadenoma", fibroadenoma_slides.shape[0])

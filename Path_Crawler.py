@@ -27,6 +27,7 @@ def folder_load(folder_path):
 
     return prev_im
 
+# Returns all slides for a given type (e.g. adenosis) at a particular magnification
 def all_slides_select_type_andmag(type, mag, dim, debug = False):
 
     type_path_stem_cand1 = "D:/GitHub Projects/Python Based/Neural Network/Datasets/BreaKHis_v1/histology_" \
@@ -35,22 +36,28 @@ def all_slides_select_type_andmag(type, mag, dim, debug = False):
     type_path_stem_cand2 = "D:/GitHub Projects/Python Based/Neural Network/Datasets/BreaKHis_v1/histology_" \
         "slides/breast/malignant/SOB/" + type + "/"
 
-    # This is a trick to make the program find the correct path for a specified cancer type
+    # This is a trick to make the program find the correct path for a specified cancer type.
+    # Bear in mind that those paths only work for my setup. To configure it to yours, modify the above paths.
     if (os.path.exists(type_path_stem_cand1)):
         type_path_stem = type_path_stem_cand1
     else:
         type_path_stem = type_path_stem_cand2
 
+    # Switch directories
     os.chdir(type_path_stem)
     found_directories = glob.glob("*")
 
     dyn_iter_count = 0
 
+    # Stepping into each folder found within current directory.
     for i in range(len(found_directories)):
         print("Processing directory: " + found_directories[i] + "; " + "Condition: " + type + "; " + "Magnification: "
               + mag)
         cur_im_block = folder_load(type_path_stem + found_directories[i] + "/" + mag + "/")
 
+        # We want to make sure that the images found in our cube abide by our specified dimensions.
+        # We can skip because per condition (e.g. adenosis), there are multiple folders containing
+        # say mag x40.
         if (debug == True):
             if(cur_im_block.shape[1] != dim[0]):
                 print("Skipping this folder as it would cause dimension mismatch")
@@ -59,6 +66,7 @@ def all_slides_select_type_andmag(type, mag, dim, debug = False):
                 print("Skipping this folder as it would cause dimension mismatch")
                 continue
 
+        # This is to differentiate between the first iteration and the second
         if (dyn_iter_count != 0):
             prev_im_block = np.concatenate((prev_im_block, cur_im_block), axis=0)
         elif(dyn_iter_count == 0):
