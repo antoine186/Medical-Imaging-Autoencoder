@@ -8,9 +8,9 @@ import numpy as np
 
 # !!! Plagiarism disclaimer !!!
 # A large portion of the code below was taken from the book GANs in Action by Jakub Langr and Vladimir Bok.
-# I have reorganised and modified those for my own purpose.
+# I have retrofitted and modified those for my own purpose.
 
-def autoencode_fit(X, Y, batch_size, original_dim, latent_dim, intermediate_dim, nb_epoch, mnist_bool):
+def autoencode_fit(X, Y, batch_size, original_dim, latent_dim, intermediate_dim, nb_epoch):
 
     original_dim = original_dim[0] * original_dim[1]
 
@@ -38,28 +38,23 @@ def autoencode_fit(X, Y, batch_size, original_dim, latent_dim, intermediate_dim,
     vae.summary()
 
     # x_decoded_mean is the reconstruction.
+    # This loss function is the combo between binary cross entropy and KL divergence
     def vae_loss(x, x_decoded_mean, original_dim=original_dim):
         xent_loss = original_dim * objectives.binary_crossentropy(x, x_decoded_mean)
         kl_loss = -0.5 * K.sum(1 + z_log_var - K.square(z_mean) - K.exp(z_log_var), axis=-1)
         return xent_loss + kl_loss
 
-    # We use RMSprop, but we could be using Adam or any other stochastic gradient descent-based method
-    # Most people stick to RMSprop, SGD, or Adam.
-    vae.compile(optimizer="rmsprop", loss=vae_loss)
+    vae.compile(optimizer="adam", loss=vae_loss)
 
     # We use the MNIST dataset for debugging purposes
-    if mnist_bool:
-        (x_train, y_train), (x_test, y_test) = mnist.load_data()
-    else:
-        x_train, x_test, y_train, y_test = train_test_split(X, Y, test_size=0.2)
-        #x_train = X[]
+    x_train, x_test, y_train, y_test = train_test_split(X, Y, test_size=0.2)
 
-        # Changing the range of pixel values.
-        x_train = x_train.astype('float32') / 255
-        x_test = x_test.astype('float32') / 255
-        # Flattening on a per sample basis.
-        x_train = x_train.reshape((len(x_train), np.prod(x_train.shape[1:])))
-        x_test = x_test.reshape((len(x_test), np.prod(x_test.shape[1:])))
+    # We are applying normalisation
+    x_train = x_train.astype('float32') / 255
+    x_test = x_test.astype('float32') / 255
+    # Flattening on a per sample basis.
+    x_train = x_train.reshape((len(x_train), np.prod(x_train.shape[1:])))
+    x_test = x_test.reshape((len(x_test), np.prod(x_test.shape[1:])))
 
     vae.fit(x_train, x_train,
             shuffle=True,
