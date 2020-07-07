@@ -11,7 +11,7 @@ import matplotlib.pyplot as plt
 # A large portion of the code below was taken from the book GANs in Action by Jakub Langr and Vladimir Bok
 # I have reorganised and modified those for my own purpose
 
-def autoencode_fit(batch_size, original_dim, latent_dim, intermediate_dim, nb_epoch):
+def autoencode_fit(batch_size, original_dim, latent_dim, intermediate_dim, nb_epoch, mnist_bool):
 
     def sampling(args):
         z_mean, z_log_var = args
@@ -46,14 +46,15 @@ def autoencode_fit(batch_size, original_dim, latent_dim, intermediate_dim, nb_ep
     # Most people stick to RMSprop, SGD, or Adam.
     vae.compile(optimizer="rmsprop", loss=vae_loss)
 
-    (x_train, y_train), (x_test, y_test) = mnist.load_data()
+    if mnist_bool:
+        (x_train, y_train), (x_test, y_test) = mnist.load_data()
 
-    # Changing the range of pixel values
-    x_train = x_train.astype('float32') / 255
-    x_test = x_test.astype('float32') / 255
-    # Flattening on a per sample basis
-    x_train = x_train.reshape((len(x_train), np.prod(x_train.shape[1:])))
-    x_test = x_test.reshape((len(x_test), np.prod(x_test.shape[1:])))
+        # Changing the range of pixel values
+        x_train = x_train.astype('float32') / 255
+        x_test = x_test.astype('float32') / 255
+        # Flattening on a per sample basis
+        x_train = x_train.reshape((len(x_train), np.prod(x_train.shape[1:])))
+        x_test = x_test.reshape((len(x_test), np.prod(x_test.shape[1:])))
 
     vae.fit(x_train, x_train,
             shuffle=True,
