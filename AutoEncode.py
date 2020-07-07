@@ -9,8 +9,8 @@ import matplotlib.pyplot as plt
 import math
 
 # !!! Plagiarism disclaimer !!!
-# A large portion of the code below was taken from the book GANs in Action by Jakub Langr and Vladimir Bok
-# I have reorganised and modified those for my own purpose
+# A large portion of the code below was taken from the book GANs in Action by Jakub Langr and Vladimir Bok.
+# I have reorganised and modified those for my own purpose.
 
 def autoencode_fit(batch_size, original_dim, latent_dim, intermediate_dim, nb_epoch, mnist_bool, nb_fig):
 
@@ -19,7 +19,7 @@ def autoencode_fit(batch_size, original_dim, latent_dim, intermediate_dim, nb_ep
         epsilon = K.random_normal(shape=(batch_size, latent_dim), mean=0.)
         return z_mean + K.exp(z_log_var / 2) * epsilon
 
-    # This is the encoder part / Third output is our z latent variable
+    # This is the encoder part / Third output is our z latent variable.
     x = Input(shape=(original_dim,), name="input")
     h = Dense(intermediate_dim, activation="relu", name="encoding")(x)
     z_mean = Dense(latent_dim, name="mean")(h)
@@ -27,7 +27,7 @@ def autoencode_fit(batch_size, original_dim, latent_dim, intermediate_dim, nb_ep
     z = Lambda(sampling, output_shape=(latent_dim,))([z_mean, z_log_var])
     encoder = Model(x, [z_mean, z_log_var, z], name="encoder")
 
-    # This is the decoder part / Output is a flattened image
+    # This is the decoder part / Output is a flattened image.
     input_decoder = Input(shape=(latent_dim,), name="decoder_input")
     decoder_h = Dense(intermediate_dim, activation="relu", name="decoder_h")(input_decoder)
     x_decoded = Dense(original_dim, activation="sigmoid", name="flat_decoded")(decoder_h)
@@ -37,7 +37,7 @@ def autoencode_fit(batch_size, original_dim, latent_dim, intermediate_dim, nb_ep
     vae = Model(x, output_combined)
     vae.summary()
 
-    # x_decoded_mean is the reconstruction
+    # x_decoded_mean is the reconstruction.
     def vae_loss(x, x_decoded_mean, original_dim=original_dim):
         xent_loss = original_dim * objectives.binary_crossentropy(x, x_decoded_mean)
         kl_loss = -0.5 * K.sum(1 + z_log_var - K.square(z_mean) - K.exp(z_log_var), axis=-1)
@@ -50,10 +50,10 @@ def autoencode_fit(batch_size, original_dim, latent_dim, intermediate_dim, nb_ep
     if mnist_bool:
         (x_train, y_train), (x_test, y_test) = mnist.load_data()
 
-        # Changing the range of pixel values
+        # Changing the range of pixel values.
         x_train = x_train.astype('float32') / 255
         x_test = x_test.astype('float32') / 255
-        # Flattening on a per sample basis
+        # Flattening on a per sample basis.
         x_train = x_train.reshape((len(x_train), np.prod(x_train.shape[1:])))
         x_test = x_test.reshape((len(x_test), np.prod(x_test.shape[1:])))
 
@@ -63,7 +63,7 @@ def autoencode_fit(batch_size, original_dim, latent_dim, intermediate_dim, nb_ep
             batch_size=batch_size,
             validation_data=(x_test, x_test), verbose=1)
 
-    ### This should be in a different file
+    ### This should be in a different file.
 
     n = nb_fig  # figure with 15x15 digits
     digit_size = int(math.sqrt(original_dim))

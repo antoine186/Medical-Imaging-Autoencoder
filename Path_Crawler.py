@@ -2,6 +2,7 @@ from PIL import Image
 import numpy as np
 import glob, os
 
+# Loads image at specified path as an array.
 def image_load(im_path, dtype):
 
     im = Image.open(im_path)
@@ -10,6 +11,7 @@ def image_load(im_path, dtype):
 
     return form_im
 
+# Captures all images found within a file and returning as a cube of images.
 def folder_load(folder_path):
 
     os.chdir(folder_path)
@@ -33,6 +35,7 @@ def all_slides_select_type_andmag(type, mag, dim, debug = False):
     type_path_stem_cand2 = "D:/GitHub Projects/Python Based/Neural Network/Datasets/BreaKHis_v1/histology_" \
         "slides/breast/malignant/SOB/" + type + "/"
 
+    # This is a trick to make the program find the correct path for a specified cancer type
     if (os.path.exists(type_path_stem_cand1)):
         type_path_stem = type_path_stem_cand1
     else:

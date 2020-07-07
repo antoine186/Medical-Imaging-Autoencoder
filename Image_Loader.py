@@ -3,6 +3,9 @@ from Path_Crawler import all_slides_select_type_andmag
 from sklearn import preprocessing
 import numpy as np
 
+# Returns all of the slides of specified magnitude.
+# Returns all slides of all conditions concatenated together along the 0 axis.
+# Returns a corresponding
 def all_slides_select_mag(mag):
 
     le = preprocessing.LabelEncoder()
