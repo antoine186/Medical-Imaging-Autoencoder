@@ -15,7 +15,7 @@ def synth_print(nb_fig, original_dim, decoder):
         for j, xi in enumerate(grid_y):
             z_sample = np.array([[xi, yi]])
             x_decoded = decoder.predict(z_sample)
-            digit = x_decoded.reshape(digit_size, digit_size)
+            digit = x_decoded.reshape(original_dim)
             figure[i * digit_size: (i + 1) * digit_size,
             j * digit_size: (j + 1) * digit_size] = digit
 

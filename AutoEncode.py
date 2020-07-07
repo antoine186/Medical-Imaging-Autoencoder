@@ -10,7 +10,9 @@ import numpy as np
 # A large portion of the code below was taken from the book GANs in Action by Jakub Langr and Vladimir Bok.
 # I have reorganised and modified those for my own purpose.
 
-def autoencode_fit(X, Y, batch_size, original_dim, latent_dim, intermediate_dim, nb_epoch, mnist_bool, nb_fig):
+def autoencode_fit(X, Y, batch_size, original_dim, latent_dim, intermediate_dim, nb_epoch, mnist_bool):
+
+    original_dim = original_dim[0] * original_dim[1]
 
     def sampling(args):
         z_mean, z_log_var = args
