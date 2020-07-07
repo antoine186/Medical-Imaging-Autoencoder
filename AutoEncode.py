@@ -3,16 +3,14 @@ from keras.models import Model
 from keras import backend as K
 from keras import objectives
 from keras.datasets import mnist
+from sklearn.model_selection import train_test_split
 import numpy as np
-from scipy.stats import norm
-import matplotlib.pyplot as plt
-import math
 
 # !!! Plagiarism disclaimer !!!
 # A large portion of the code below was taken from the book GANs in Action by Jakub Langr and Vladimir Bok.
 # I have reorganised and modified those for my own purpose.
 
-def autoencode_fit(batch_size, original_dim, latent_dim, intermediate_dim, nb_epoch, mnist_bool, nb_fig):
+def autoencode_fit(X, Y, batch_size, original_dim, latent_dim, intermediate_dim, nb_epoch, mnist_bool, nb_fig):
 
     def sampling(args):
         z_mean, z_log_var = args
@@ -47,8 +45,11 @@ def autoencode_fit(batch_size, original_dim, latent_dim, intermediate_dim, nb_ep
     # Most people stick to RMSprop, SGD, or Adam.
     vae.compile(optimizer="rmsprop", loss=vae_loss)
 
+    # We use the MNIST dataset for debugging purposes
     if mnist_bool:
         (x_train, y_train), (x_test, y_test) = mnist.load_data()
+    else:
+        x_train, x_test, y_train, y_test = train_test_split(X, Y, test_size=0.2)
 
         # Changing the range of pixel values.
         x_train = x_train.astype('float32') / 255
@@ -63,23 +64,4 @@ def autoencode_fit(batch_size, original_dim, latent_dim, intermediate_dim, nb_ep
             batch_size=batch_size,
             validation_data=(x_test, x_test), verbose=1)
 
-    ### This should be in a different file.
-
-    n = nb_fig  # figure with 15x15 digits
-    digit_size = int(math.sqrt(original_dim))
-    figure = np.zeros((digit_size * n, digit_size * n))
-
-    grid_x = norm.ppf(np.linspace(0.05, 0.95, n))
-    grid_y = norm.ppf(np.linspace(0.05, 0.95, n))
-
-    for i, yi in enumerate(grid_x):
-        for j, xi in enumerate(grid_y):
-            z_sample = np.array([[xi, yi]])
-            x_decoded = decoder.predict(z_sample)
-            digit = x_decoded.reshape(digit_size, digit_size)
-            figure[i * digit_size: (i + 1) * digit_size,
-            j * digit_size: (j + 1) * digit_size] = digit
-
-    plt.figure(figsize=(10, 10))
-    plt.imshow(figure, cmap='Greys_r')
-    plt.show()
+    return encoder, decoder, vae

@@ -7,6 +7,7 @@ import numpy as np
 # More precisely: Returns all slides of all conditions concatenated together along the 0 axis.
 # Returns a corresponding array of labels.
 # Returns the label model allowing us to reverse engineer actual class label later on.
+# mag is specified as 40X for instance
 def all_slides_select_mag(mag):
 
     le = preprocessing.LabelEncoder()

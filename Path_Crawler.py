@@ -57,7 +57,7 @@ def all_slides_select_type_andmag(type, mag, dim, debug = False):
 
         # We want to make sure that the images found in our cube abide by our specified dimensions.
         # We can skip because per condition (e.g. adenosis), there are multiple folders containing
-        # say mag x40.
+        # say mag 40X.
         if (debug == True):
             if(cur_im_block.shape[1] != dim[0]):
                 print("Skipping this folder as it would cause dimension mismatch")
