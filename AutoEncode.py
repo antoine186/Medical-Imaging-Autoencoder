@@ -30,7 +30,7 @@ def autoencode_fit(X, Y, batch_size, original_dim, latent_dim, intermediate_dim,
     # This is the decoder part / Output is a flattened image.
     input_decoder = Input(shape=(latent_dim,), name="decoder_input")
     decoder_h = Dense(intermediate_dim, activation="relu", name="decoder_h")(input_decoder)
-    x_decoded = Dense(original_dim, activation="sigmoid", name="flat_decoded")(decoder_h)
+    x_decoded = Dense(original_dim, activation="softmax", name="flat_decoded")(decoder_h)
     decoder = Model(input_decoder, x_decoded, name="decoder")
 
     output_combined = decoder(encoder(x)[2])
@@ -52,6 +52,7 @@ def autoencode_fit(X, Y, batch_size, original_dim, latent_dim, intermediate_dim,
         (x_train, y_train), (x_test, y_test) = mnist.load_data()
     else:
         x_train, x_test, y_train, y_test = train_test_split(X, Y, test_size=0.2)
+        #x_train = X[]
 
         # Changing the range of pixel values.
         x_train = x_train.astype('float32') / 255
@@ -62,8 +63,9 @@ def autoencode_fit(X, Y, batch_size, original_dim, latent_dim, intermediate_dim,
 
     vae.fit(x_train, x_train,
             shuffle=True,
-            nb_epoch=nb_epoch,
+            epochs=nb_epoch,
             batch_size=batch_size,
             validation_data=(x_test, x_test), verbose=1)
+            #use_multiprocessing=False
 
     return encoder, decoder, vae

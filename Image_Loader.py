@@ -54,3 +54,30 @@ def all_slides_select_mag(mag):
     #le.inverse_transform(all_slides_mag_labels)
 
     return all_slides_mag, all_slides_mag_labels, le
+
+def fast_slides_select_mag(mag):
+
+    le = preprocessing.LabelEncoder()
+
+    # We are loading all of our slides for mag.
+
+    # Benign slides
+    adenosis_slides = all_slides_select_type_andmag("adenosis", mag, (460, 700), True)
+
+    all_slides_mag = adenosis_slides
+
+    # We are labelling all of our slides.
+
+    adenosis_labels = np.repeat("adenosis", adenosis_slides.shape[0])
+
+    all_slides_mag_labels = adenosis_labels
+
+    # Fitting le returns a set of distinct and ordered detected classes.
+    le.fit(all_slides_mag_labels)
+    # Using le transform, we map all of our labels into indices that map onto the result of le.fit.
+    all_slides_mag_labels = le.transform(all_slides_mag_labels)
+    # Using inverse_transform, we simply undo the transform.
+    #le.inverse_transform(all_slides_mag_labels)
+
+    return all_slides_mag, all_slides_mag_labels, le
+
