@@ -12,4 +12,5 @@ A Variational Autoencoder is a neural network-based compression and generative m
 
 ## Results with MNIST
 
-
+We use:
+- A sample of 70,000 images of hand-written digits, 
