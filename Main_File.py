@@ -1,6 +1,7 @@
 from AutoEncode import autoencode_fit
 from Synth_Print import synth_print
 from Test_IM import test_im
+from tensorflow import keras
 from Image_Loader import fast_slides_select_mag
 from Image_Loader import all_slides_select_mag
 from RGB_2_Gray import r2g
@@ -33,7 +34,7 @@ batch_size = 10
 original_dim = (460, 700)
 latent_dim = 2
 intermediate_dim = 256
-nb_epoch = 10
+nb_epoch = 2
 nb_fig = 5
 
 # We are only using one possible condition in order to test our vae
@@ -69,6 +70,9 @@ encoder, decoder, vae = autoencode_fit(all_slides_mag, all_slides_mag_labels, ba
 encoder.save("D:\\GitHub Projects\\Python Based\\Neural Network\\AutoEncoder\\encoder")
 decoder.save("D:\\GitHub Projects\\Python Based\\Neural Network\\AutoEncoder\\decoder")
 
+encoder = keras.models.load_model("D:\\GitHub Projects\\Python Based\\Neural Network\\AutoEncoder\\encoder")
+decoder = keras.models.load_model("D:\\GitHub Projects\\Python Based\\Neural Network\\AutoEncoder\\decoder")
+
 # Displaying a possible subset of synthetic Cancer Images
 synth_print(nb_fig, original_dim, decoder)
-test_im(1.5, 0.1, decoder, original_dim)
+test_im(decoder, original_dim)

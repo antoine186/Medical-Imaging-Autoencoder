@@ -47,13 +47,13 @@ def autoencode_fit(X, Y, batch_size, original_dim, latent_dim, intermediate_dim,
     z = Lambda(sampling, output_shape=(latent_dim,), name="z")([z_mean, z_log_var])
     print(z)
     """
-    h7 = Dense(28 * 28, activation="relu", name="h7")(h6)
+    h7 = Dense(256, activation="relu", name="h7")(h6)
     print(h7)
     encoder = Model(x, h7, name="encoder")
     print("Model Switch")
 
     # This is the decoder part / Output is a flattened image.
-    input_decoder = Input(shape=(28 * 28,), name="decoder_input")
+    input_decoder = Input(shape=(256,), name="decoder_input")
     print(input_decoder)
     input_decoder2 = Dense(intermediate_dim, activation="relu", name="input_decoder2")(input_decoder)
     print(input_decoder2)
