@@ -39,17 +39,21 @@ def autoencode_fit(X, Y, batch_size, original_dim, latent_dim, intermediate_dim,
     print(h5)
     h6 = Flatten(name="h6")(h5)
     print(h6)
+    """
     z_mean = Dense(latent_dim, name="mean")(h6)
     z_log_var = Dense(latent_dim, name="log-variance")(h6)
     print(z_mean)
     print(z_log_var)
     z = Lambda(sampling, output_shape=(latent_dim,), name="z")([z_mean, z_log_var])
     print(z)
-    encoder = Model(x, [z_mean, z_log_var, z], name="encoder")
+    """
+    h7 = Dense(28 * 28, activation="relu", name="h7")(h6)
+    print(h7)
+    encoder = Model(x, h7, name="encoder")
     print("Model Switch")
 
     # This is the decoder part / Output is a flattened image.
-    input_decoder = Input(shape=(latent_dim,), name="decoder_input")
+    input_decoder = Input(shape=(28 * 28,), name="decoder_input")
     print(input_decoder)
     input_decoder2 = Dense(intermediate_dim, activation="relu", name="input_decoder2")(input_decoder)
     print(input_decoder2)
@@ -57,32 +61,31 @@ def autoencode_fit(X, Y, batch_size, original_dim, latent_dim, intermediate_dim,
     print(input_decoder3)
     q1 = Conv2DTranspose(4, kernel_size=(5, 5), activation='relu', name="q1")(input_decoder3)
     print(q1)
-    #u_q1 = UpSampling2D((2, 2), name="u_q1")(x)
-    #print(u_q1)
     q2 = Conv2DTranspose(4, kernel_size=(5, 5), activation='relu', name="q2")(q1)
     print(q2)
-    #u_q2 = UpSampling2D((2, 2), name="u_q2")(x)
-    #print(u_q2)
     x_decoded0 = Flatten()(q2)
-    x_decoded = Dense(unflat_dim[0] * unflat_dim[1], activation="softmax", name="flat_decoded")(x_decoded0)
+    x_decoded = Dense(unflat_dim[0] * unflat_dim[1], activation="sigmoid", name="flat_decoded")(x_decoded0)
     print(x_decoded)
     x_decoded2 = Reshape((original_dim,), name="reshaped")(x_decoded)
     print(x_decoded2)
     decoder = Model(input_decoder, x_decoded2, name="decoder")
 
-    output_combined = decoder(encoder(x)[2])
+    #output_combined = decoder(encoder(x)[2])
+    output_combined = decoder(encoder(x))
     vae = Model(x, output_combined)
     vae.summary()
 
     # x_decoded_mean is the reconstruction.
     # This loss function is the combo between binary cross entropy and KL divergence
+    """
     def vae_loss(x, x_decoded_mean, original_dim=original_dim):
         xent_loss = original_dim * objectives.binary_crossentropy(x, x_decoded_mean)
         kl_loss = -0.5 * K.sum(1 + z_log_var - K.square(z_mean) - K.exp(z_log_var), axis=-1)
         return xent_loss + kl_loss
+    """
 
-    #vae.compile(optimizer="adam", loss=binary_crossentropy)
-    vae.compile(optimizer="adam", loss=vae_loss)
+    vae.compile(optimizer="adam", loss=binary_crossentropy)
+    #vae.compile(optimizer="adam", loss=vae_loss)
 
     # We use the MNIST dataset for debugging purposes
     x_train, x_test, y_train, y_test = train_test_split(X, Y, test_size=0.2)

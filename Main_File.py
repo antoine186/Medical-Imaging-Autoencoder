@@ -1,5 +1,6 @@
 from AutoEncode import autoencode_fit
 from Synth_Print import synth_print
+from Test_IM import test_im
 from Image_Loader import fast_slides_select_mag
 from Image_Loader import all_slides_select_mag
 from RGB_2_Gray import r2g
@@ -32,8 +33,8 @@ batch_size = 10
 original_dim = (460, 700)
 latent_dim = 2
 intermediate_dim = 256
-nb_epoch = 1
-nb_fig = 15
+nb_epoch = 10
+nb_fig = 5
 
 # We are only using one possible condition in order to test our vae
 #all_slides_mag, all_slides_mag_labels, le = fast_slides_select_mag("40X")
@@ -70,3 +71,4 @@ decoder.save("D:\\GitHub Projects\\Python Based\\Neural Network\\AutoEncoder\\de
 
 # Displaying a possible subset of synthetic Cancer Images
 synth_print(nb_fig, original_dim, decoder)
+test_im(1.5, 0.1, decoder, original_dim)
