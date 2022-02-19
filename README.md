@@ -13,6 +13,12 @@ An Autoencoder is a neural network-based compression and generative model. It re
 
 ## BreakHis Image Set
 
+## Successful Autoencoder Architecture
+
+## Early Failed Attempt Example
+
+## Later Successful Examples
+
 ## Results with MNIST
 
 We use:
