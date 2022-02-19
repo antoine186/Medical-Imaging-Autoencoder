@@ -1,4 +1,4 @@
-# AutoEncoder
+# AutoEncoder ![javascript](https://img.shields.io/badge/-javascript-red) ![HTML](https://img.shields.io/badge/-HTML-orange) ![CSS](https://img.shields.io/badge/-css-blue) ![Node.JS](https://img.shields.io/badge/Node.JS-12.18.3-brightgreen) ![npm](https://img.shields.io/badge/npm-live--server-yellow)
 
 ## Overview
 
