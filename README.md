@@ -14,7 +14,7 @@ An Autoencoder is a neural network-based compression and generative model. It re
 ## BreakHis Image Set
 
 <p align="center">
-  <img src="https://github.com/antoine186/MedicalImagingAutoencoder/blob/BrChart.png" alt="alt text" width=60% height=60%>
+  <img src="https://github.com/antoine186/MedicalImagingAutoencoder/blob/master/blob/BrChart.png" alt="alt text" width=60% height=60%>
 </p>
 
 ## Successful Autoencoder Architecture
