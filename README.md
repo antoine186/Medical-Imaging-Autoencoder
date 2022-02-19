@@ -13,6 +13,10 @@ An Autoencoder is a neural network-based compression and generative model. It re
 
 ## BreakHis Image Set
 
+<p align="center">
+  <img src="https://github.com/antoine186/3D-Helicopter/blob/main/imgs/Heli%20Wireframe.PNG" alt="alt text" width=60% height=60%>
+</p>
+
 ## Successful Autoencoder Architecture
 
 ## Early Failed Attempt Example
