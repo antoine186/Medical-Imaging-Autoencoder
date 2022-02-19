@@ -29,7 +29,7 @@ This Autoencoder is in essence a Deep Neural Network model. Let us first explain
   <img src="https://github.com/antoine186/MedicalImagingAutoencoder/blob/master/blob/CompressionAIDesign.png" alt="alt text" width=60% height=60%>
 </p>
 
-The Autoencoder helps to compress and speed up the learning process of the GAN, which is known to have incredibly fickle training behaviours and to require inordinate and frequently impractical amounts of computing power.
+The Autoencoder helps to compress and speed up the learning process of the GAN, which is known to have incredibly fickle training behaviour and to require inordinate and frequently impractical amounts of computing power.
 
 ## Early Failed Attempt Example
 
