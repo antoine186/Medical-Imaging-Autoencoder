@@ -13,6 +13,8 @@ An Autoencoder is a neural network-based compression and generative model. It re
 
 ## BreakHis Image Set
 
+The image set is a high-quality one drawn from 82 patients using different microscopy magnification factors (40X, 100X, 200X, and 400X). The data is inherently hierarchical as can be seen in the figure below. At a first top level, we have the global distinction between benign and malignant tissue. Further down and at a lower second level, the data can be subdivided into 4 subclasses each in order to represent all the possible subclasses of both benign and malignant biological manifestations.
+
 <p align="center">
   <img src="https://github.com/antoine186/MedicalImagingAutoencoder/blob/master/blob/BrChart.png" alt="alt text" width=60% height=60%>
 </p>
