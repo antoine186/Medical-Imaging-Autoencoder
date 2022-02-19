@@ -1,8 +1,8 @@
-# Medical Imaging Autoencoder ![javascript](https://img.shields.io/badge/-javascript-red) ![HTML](https://img.shields.io/badge/-HTML-orange) ![CSS](https://img.shields.io/badge/-css-blue) ![Node.JS](https://img.shields.io/badge/Node.JS-12.18.3-brightgreen) ![npm](https://img.shields.io/badge/npm-live--server-yellow)
+# Medical Imaging Autoencoder ![Python3Ver](https://img.shields.io/badge/Scripting-Python%203-red) ![TFKeras](https://img.shields.io/badge/TensorFlow-Keras-yellow) ![CV](https://img.shields.io/badge/Computer-Vision-green) ![AI](https://img.shields.io/badge/Artificial-Intelligence-lightgrey) ![GenModels](https://img.shields.io/badge/Generative-Models-blue)
 
 ## Overview
 
-This program is a retrofitted Variational Autoencoder. It can currently be applied to clinical images such as cancer histopathological slides.
+This program is a retrofitted Autoencoder. It can currently be applied to clinical images such as cancer histopathological slides.
 
 (Note) This program requires Python 3.7.
 
