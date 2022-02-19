@@ -23,6 +23,10 @@ Further down and at a lower second level, the data can be subdivided into 4 subc
 
 ## Successful Autoencoder Architecture
 
+This Autoencoder is in essence a Deep Neural Network model. Let us first explain the purpose of its deepness: It needs to be able to capture the multi-dimentional and highly varied (i.e. if one inspects the image set, they will find a great number of subclasses with many benign exemplars resembling strongly malignant exemplars to the naked eye!!!) patterns of cancer/healthy features within the biopsies. The ultimate goal of the Autoencoder is to intervene within the training of a GAN model - outside the scope of this repo - for the synthetic generation of cancer images. The GAN/Autoencoder experiment setup can be found in the image below:
+
+The Autoencoder helps to compress and speed up the learning process of the GAN, which is known to have incredibly fickle training behaviours and to require inordinate and frequently impractical amounts of computing power.
+
 ## Early Failed Attempt Example
 
 ## Later Successful Examples
