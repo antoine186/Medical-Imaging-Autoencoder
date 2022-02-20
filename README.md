@@ -51,12 +51,16 @@ In this second image, there is much improvement and the mode collapses more soft
 
 ## Later Successful Examples
 
-## Results with MNIST
+In order to train the Autoencoder successfully to the point that is was able to reconstruct the input flawlessly (i.e. image below), we had to make the latent space relatively larger. Going increasingly small in this respect tends towards a near incomprehensible reconstruction. 
+We also decided for both the encoder or the decoder network to use the ReLU activation function. 
+We attempted to use other well-known activation functions such as the exponential, elu, and selu functions. Those were discarded as they either led to training error rates that were relatively much higher or to reconstructions of very poor quality.
 
-We use:
-- A sample of 70,000 images of hand-written digits
-- Two simple 3-layers encoder and decoder neural networks
-- A batch size of 10
-- Five training epochs
+The final successful training params. were as follows:
 
+* 2000 training epochs
+* Batch size: 10 <- A higher batch size causes my computer to run out of memory ^^
+* 80-20% train-test split
+* Loss function: Binary cross-entropy
+* Learning algorithm: Adadelta
 
+The training time was upwards of 11 hours 
