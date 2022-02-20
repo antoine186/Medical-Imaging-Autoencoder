@@ -35,6 +35,8 @@ Our Deep Autoencoder is comprised of two parts: the encoder deep network and the
 
 ## Early Failed Attempt Example
 
+Our first half-dozen attempts were failures. Even though an Autoencoder is much better behaved and easier to train than the much more complex GAN model, training an autoencoder is by no means simple in absolute terms. Each failed training attempts' duration ranged between 8 to 16 hours! We essentially encountered severe issues of mode collapse found in the image below:
+
 ## Later Successful Examples
 
 ## Results with MNIST
