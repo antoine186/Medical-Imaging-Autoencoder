@@ -55,6 +55,7 @@ In order to train the Autoencoder successfully to the point that is was able to 
 We also decided for both the encoder and the decoder network to use the ReLU activation function. 
 We attempted to use other well-known activation techniques such as the exponential, elu, and selu functions. Those were in the end discarded as they either led to training error rates that were relatively-speaking much higher or to reconstructions of very poor quality.
 <br />
+&nbsp;
 Perfect reconstruction of a benign exemplar:
 <p align="center">
   <img src="https://github.com/antoine186/Medical-Imaging-Autoencoder/blob/master/blob/BenignPerfRecon.png" alt="alt text" width=60% height=60%>
