@@ -35,7 +35,19 @@ Our Deep Autoencoder is comprised of two parts: the encoder deep network and the
 
 ## Early Failed Attempt Example
 
-Our first half-dozen attempts were failures. Even though an Autoencoder is much better behaved and easier to train than the much more complex GAN model, training an autoencoder is by no means simple in absolute terms. Each failed training attempts' duration ranged between 8 to 16 hours! We essentially encountered severe issues of mode collapse found in the image below:
+Our first half-dozen attempts were failures. Even though an Autoencoder is much better behaved and easier to train than the much more complex GAN model, training an autoencoder is by no means simple in absolute terms. Each failed training attempts' duration ranged between 8 to 16 hours! We essentially encountered severe issues of mode collapse found in the example images below:
+
+<p align="center">
+  <img src="https://github.com/antoine186/Medical-Imaging-Autoencoder/blob/master/blob/SmallLossVeryLossy.png" alt="alt text" width=60% height=60%>
+</p>
+
+In this first image, the mode collapsed entirely upon complete noise (i.e. it didn't even collapse on a single legible pattern).
+
+<p align="center">
+  <img src="https://github.com/antoine186/Medical-Imaging-Autoencoder/blob/master/blob/CompressionAIDesign.png" alt="alt text" width=60% height=60%>
+</p>
+
+In this second image, there is much improvement and the mode collapses more softly, but it is unable to produce any output outside of this visual range. Additionally, the middle section shows that it also collapses softly on pure noise.
 
 ## Later Successful Examples
 
