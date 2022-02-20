@@ -44,10 +44,10 @@ Our first half-dozen attempts were failures. Even though an Autoencoder is much 
 In this first image, the mode collapsed entirely upon complete noise (i.e. it didn't even collapse on a single legible pattern).
 
 <p align="center">
-  <img src="https://github.com/antoine186/Medical-Imaging-Autoencoder/blob/master/blob/CompressionAIDesign.png" alt="alt text" width=60% height=60%>
+  <img src="https://github.com/antoine186/Medical-Imaging-Autoencoder/blob/master/blob/SmallerLoss.png" alt="alt text" width=60% height=60%>
 </p>
 
-In this second image, there is much improvement and the mode collapses more softly, but it is unable to produce any output outside of this visual range. Additionally, the middle section shows that it also collapses softly on pure noise.
+In this second image, there is much improvement and the mode collapses more softly, but it is unable to produce any output outside of this visual range. Additionally, the middle section shows that it also collapses softly on noise.
 
 ## Later Successful Examples
 
