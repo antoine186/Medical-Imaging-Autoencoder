@@ -41,7 +41,7 @@ Our first half-dozen attempts were failures. Even though an Autoencoder is much 
   <img src="https://github.com/antoine186/Medical-Imaging-Autoencoder/blob/master/blob/SmallLossVeryLossy.png" alt="alt text" width=60% height=60%>
 </p>
 
-In this first image, the mode collapsed entirely upon complete noise (i.e. it didn't even collapse on a single legible pattern).
+In this first image, the mode collapsed entirely upon complete noise (i.e. it didn't even collapse on a single clearly legible pattern).
 
 <p align="center">
   <img src="https://github.com/antoine186/Medical-Imaging-Autoencoder/blob/master/blob/SmallerLoss.png" alt="alt text" width=60% height=60%>
