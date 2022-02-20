@@ -51,9 +51,9 @@ In this second image, there is much improvement and the mode collapses more soft
 
 ## Later Successful Examples
 
-In order to train the Autoencoder successfully to the point that is was able to reconstruct the input flawlessly (i.e. images below), we had to make the latent space relatively larger. Going increasingly small in this respect tends towards a near incomprehensible reconstruction. 
-We also decided for both the encoder and the decoder network to use the ReLU activation function. 
-We attempted to use other well-known activation techniques such as the exponential, elu, and selu functions. Those were in the end discarded as they either led to training error rates that were relatively-speaking much higher or to reconstructions of very poor quality.
+In order to train the Autoencoder successfully to the point that it was able to reconstruct the input flawlessly (i.e. images below), we had to make the latent space relatively larger. Going increasingly small in this respect causes the model performance to tend towards a near incomprehensible reconstruction. 
+We also decided to use for both the encoder and the decoder network the ReLU activation function. 
+We did in fact attempt to use other well-known activation techniques such as the elu, exponential, and selu functions. Those were in the end discarded as they either led to training error rates that were relatively-speaking much higher or to reconstructions of very poor quality.
 <br />
 &nbsp;  
 Perfect reconstruction of a benign exemplar:
@@ -62,6 +62,7 @@ Perfect reconstruction of a benign exemplar:
 </p>
 <br />
 Perfect reconstruction of a malignant exemplar:
+&nbsp;  
 <p align="center">
   <img src="https://github.com/antoine186/Medical-Imaging-Autoencoder/blob/master/blob/MalignantPerfRecon.png" alt="alt text" width=60% height=60%>
 </p>
