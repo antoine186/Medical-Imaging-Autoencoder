@@ -51,9 +51,17 @@ In this second image, there is much improvement and the mode collapses more soft
 
 ## Later Successful Examples
 
-In order to train the Autoencoder successfully to the point that is was able to reconstruct the input flawlessly (i.e. image below), we had to make the latent space relatively larger. Going increasingly small in this respect tends towards a near incomprehensible reconstruction. 
-We also decided for both the encoder or the decoder network to use the ReLU activation function. 
-We attempted to use other well-known activation functions such as the exponential, elu, and selu functions. Those were discarded as they either led to training error rates that were relatively much higher or to reconstructions of very poor quality.
+In order to train the Autoencoder successfully to the point that is was able to reconstruct the input flawlessly (i.e. images below), we had to make the latent space relatively larger. Going increasingly small in this respect tends towards a near incomprehensible reconstruction. 
+We also decided for both the encoder and the decoder network to use the ReLU activation function. 
+We attempted to use other well-known activation techniques such as the exponential, elu, and selu functions. Those were in the end discarded as they either led to training error rates that were relatively-speaking much higher or to reconstructions of very poor quality.
+
+<p align="center">
+  <img src="https://github.com/antoine186/Medical-Imaging-Autoencoder/blob/master/blob/SmallLossVeryLossy.png" alt="alt text" width=60% height=60%>
+</p>
+
+<p align="center">
+  <img src="https://github.com/antoine186/Medical-Imaging-Autoencoder/blob/master/blob/SmallLossVeryLossy.png" alt="alt text" width=60% height=60%>
+</p>
 
 The final successful training params. were as follows:
 
